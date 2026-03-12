@@ -1,4 +1,14 @@
 import mysql.connector
+import streamlit as st
+
+def connect_to_db():
+    return mysql.connector.connect(
+        host=st.secrets["mysql"]["host"],
+        user=st.secrets["mysql"]["user"],
+        password=st.secrets["mysql"]["password"],
+        database=st.secrets["mysql"]["database"],
+        port=st.secrets["mysql"]["port"]
+    )
 
 def connect_to_db():
     return mysql.connector.connect(
@@ -130,4 +140,5 @@ def get_pending_reorders(cursor):
 
 def mark_reorder_as_received(cursor, db, reorder_id):
     cursor.callproc("MarkReorderAsReceived",[reorder_id])
+
     db.commit()
