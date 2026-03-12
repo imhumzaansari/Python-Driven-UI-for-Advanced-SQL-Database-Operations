@@ -1,5 +1,5 @@
-import mysql.connector
 import streamlit as st
+import mysql.connector
 
 def connect_to_db():
     return mysql.connector.connect(
@@ -142,3 +142,4 @@ def mark_reorder_as_received(cursor, db, reorder_id):
     cursor.callproc("MarkReorderAsReceived",[reorder_id])
 
     db.commit()
+
